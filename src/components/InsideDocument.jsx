@@ -3,6 +3,7 @@ import Header from "./Header";
 import TitleTextWrapperCard from "./TitleTextWrapperCard";
 import FeatureTextWrapperCard from "./FeatureTextWrapperCard";
 import OverflowWrapperCard from "./OverflowWrapperCard";
+import OptionFeatureWrapperCard from "./OptionFeatureWrapperCard";
 
 const InsideDocument = () => {
   return (
@@ -33,14 +34,14 @@ const InsideDocument = () => {
             <OverflowWrapperCard>
               <div className="m-12">
                 <div className="m-6">
-                  <FeatureTextWrapperCard>
+                  <OptionFeatureWrapperCard>
                     <div>Total Visits</div>
-                  </FeatureTextWrapperCard>
+                  </OptionFeatureWrapperCard>
                 </div>
                 <div className="m-6">
-                  <FeatureTextWrapperCard>
+                  <OptionFeatureWrapperCard>
                     <div>Last Updated</div>
-                  </FeatureTextWrapperCard>
+                  </OptionFeatureWrapperCard>
                 </div>
               </div>
             </OverflowWrapperCard>
