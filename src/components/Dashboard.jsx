@@ -18,9 +18,9 @@ const Dashboard = () => {
           <TitleTextWrapperCard>
             <div className="">All Documents</div>
           </TitleTextWrapperCard>
-          {/* <DocumentTextWrapperCard>
+          <DocumentTextWrapperCard>
             <div>A Document</div>
-          </DocumentTextWrapperCard> */}
+          </DocumentTextWrapperCard>
         </div>
       </div>
     </div>

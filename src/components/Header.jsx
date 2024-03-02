@@ -9,7 +9,9 @@ const Header = ({ setUserInfo }) => {
           VersionVaultHub
         </div>
       </div>
-      <img className="mix-blend-darken" src="/user.jpg" alt="" />
+      <div className="flex align-middle w-14">
+        <img className="mix-blend-darken" src="/user.jpg" alt="" />
+      </div>
     </div>
   );
 };
