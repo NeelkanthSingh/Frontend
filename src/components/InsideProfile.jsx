@@ -11,6 +11,9 @@ const InsideProfile = () => {
       <Header />
       <div className="flex flex-1 h-full text-center">
         <div className="w-60 flex flex-col FAF9F6 border-r-2 border-black">
+        <FeatureTextWrapperCard>
+            <div className="">Logout</div>
+          </FeatureTextWrapperCard>
           <FeatureTextWrapperCard>
             <div className="">Rename User</div>
           </FeatureTextWrapperCard>
