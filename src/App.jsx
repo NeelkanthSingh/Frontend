@@ -1,5 +1,7 @@
+import CreateDocument from "./components/CreateDocument";
 import Dashboard from "./components/Dashboard";
 import InsideDocument from "./components/InsideDocument";
+import InsideProfile from "./components/InsideProfile";
 import OverflowWrapperCard from "./components/OverflowWrapperCard";
 import SignIn from "./components/SignIn";
 import Username from "./components/Username";
@@ -15,7 +17,9 @@ function App() {
         {/* </OverflowWrapperCard> */}
 
         {/* <Dashboard /> */}
-        <InsideDocument />
+        {/* <InsideDocument /> */}
+        {/* <InsideProfile /> */}
+        <CreateDocument />
       </div>
     </div>
   );
