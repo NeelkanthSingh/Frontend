@@ -1,15 +1,19 @@
+import Dashboard from "./components/Dashboard";
 import OverflowWrapperCard from "./components/OverflowWrapperCard";
 import SignIn from "./components/SignIn";
 import Username from "./components/Username";
 
 function App() {
   return (
-    <div className="h-screen w-screen flex justify-center items-center bg-[#F9F6EE] ">
+    // flex justify-center items-center
+    <div className="h-screen w-screen bg-[#F9F6EE] ">
       <div>
-        <OverflowWrapperCard>
-          <Username />
-          {/* <SignIn /> */}
-        </OverflowWrapperCard>
+        {/* <OverflowWrapperCard> */}
+        {/* <Username /> */}
+        {/* <SignIn /> */}
+        {/* </OverflowWrapperCard> */}
+
+        <Dashboard />
       </div>
     </div>
   );
