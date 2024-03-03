@@ -19,7 +19,7 @@ function App() {
         {/* <Dashboard /> */}
         {/* <InsideDocument /> */}
         {/* <InsideProfile /> */}
-        <CreateDocument />
+        <SignIn />
       </div>
     </div>
   );
