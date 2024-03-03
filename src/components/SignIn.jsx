@@ -21,9 +21,6 @@ const SignIn = () => {
 
   useEffect(() => {
     if (profileInfo) {
-      console.log(
-        "Hi this is my profileInfo.email value = " + profileInfo.email
-      );
       axios
         .get(`http://localhost:3000/auth`, {
           params: {
@@ -36,8 +33,6 @@ const SignIn = () => {
         .then((response) => {
           const data = response.data;
           const emailValue = profileInfo.email;
-          console.log(data);
-          console.log(emailValue);
           if (data.firstUser === false) {
             navigate("/dashboard", { state: { username: data.username } });
           } else {
@@ -58,7 +53,6 @@ const SignIn = () => {
         .then((response) => {
           const profileInfoString = JSON.stringify(response.data);
           setProfileInfo(response.data);
-          // Make sure it is handled by the backend server
           Cookies.set("profileInfo", profileInfoString);
         })
         .catch((error) => {
@@ -70,7 +64,6 @@ const SignIn = () => {
   const login = useGoogleLogin({
     onSuccess: (response) => {
       setUserInfo(response);
-      // Make sure it is handled by the backend server
       Cookies.set("userInfo", JSON.stringify(response));
       console.log("Success");
     },

@@ -6,10 +6,10 @@ import DocumentTextWrapperCard from "./DocumentTextWrapperCard";
 
 const Dashboard = () => {
   return (
-    <div className="h-screen">
+    <div className="flex flex-col h-screen w-screen bg-[#F9F6EE]">
       <Header />
-      <div className="flex text-center h-full">
-        <div className="w-60 flex flex-col h-full FAF9F6 border-r-2 border-black">
+      <div className="flex text-center flex-grow">
+        <div className="w-60 flex flex-col border-r-2 border-black">
           <FeatureTextWrapperCard>
             <div className="">Create Document</div>
           </FeatureTextWrapperCard>
