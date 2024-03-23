@@ -1,15 +1,15 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Route, Navigate } from "react-router-dom";
+import { authAtom } from "../store/atoms/auth";
+import { useRecoilValue } from "recoil";
 
-const PrivateRoute = ({ Component }) => {
-  const isAuthenticated = true; 
+const PrivateRoute = ({ children }) => {
+  const isAuthenticated = useRecoilValue(authAtom);
 
   return (
-    <Route
-      element={
-        isAuthenticated ? <Component /> : <Navigate to="/login" replace />
-      }
-    />
+    <>
+      { isAuthenticated ? ( children ) : ( <Navigate to="/signin" replace /> ) }
+    </>  
   );
 };
 

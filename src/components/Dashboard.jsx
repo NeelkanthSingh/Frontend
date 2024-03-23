@@ -1,5 +1,6 @@
 import React from "react";
 import Header from "./Header";
+import Footer from "./Footer"
 import TitleTextWrapperCard from "./TitleTextWrapperCard";
 import FeatureTextWrapperCard from "./FeatureTextWrapperCard";
 import DocumentTextWrapperCard from "./DocumentTextWrapperCard";
@@ -23,8 +24,10 @@ const Dashboard = () => {
           </DocumentTextWrapperCard>
         </div>
       </div>
+      <Footer />
     </div>
   );
 };
+
 
 export default Dashboard;

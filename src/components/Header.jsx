@@ -1,18 +1,16 @@
 import React from "react";
+import LogoHeader from "./Logo/LogoHeader"
+import LogoImage from "./Logo/LogoImage";
+import { Link } from "react-router-dom";
 
-const Header = ({ setUserInfo }) => {
+const Header = () => {
   return (
-    <div className="flex font-sans text-black py-1 px-4 justify-between h-14 border-b-2 border-black">
-      <div className="flex">
-        <img className="w-12" src="/logo.png" alt="" />
-        <div className="flex font-bold text-green-800 text-2xl items-center">
-          VersionVaultHub
-        </div>
-      </div>
-      <div className="flex align-middle w-14">
-        <img className="mix-blend-darken" src="/user.jpg" alt="" />
-      </div>
-    </div>
+    <nav className="py-0.5 px-5 flex justify-between items-center bg-[#fbfff5] fixed z-50 left-0 right-0 shadow-lg">
+      <Link className="flex items-center space-x-1 cursor-pointer" to="/dashboard">
+        <LogoImage />
+        <LogoHeader />
+      </Link>
+    </nav>
   );
 };
 
