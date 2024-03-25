@@ -4,12 +4,13 @@ import Footer from "./Footer"
 import TitleTextWrapperCard from "./TitleTextWrapperCard";
 import FeatureTextWrapperCard from "./FeatureTextWrapperCard";
 import DocumentTextWrapperCard from "./DocumentTextWrapperCard";
+import Sidebar from "./Sidebar";
 
 const Dashboard = () => {
   return (
     <div className="flex flex-col h-screen w-screen bg-[#F9F6EE]">
       <Header />
-      <div className="flex text-center flex-grow">
+      {/* <div className="flex text-center flex-grow">
         <div className="w-60 flex flex-col border-r-2 border-black">
           <FeatureTextWrapperCard>
             <div className="">Create Document</div>
@@ -23,7 +24,9 @@ const Dashboard = () => {
             <div>A Document</div>
           </DocumentTextWrapperCard>
         </div>
-      </div>
+      </div> */}
+      <div className=" flex-1"></div>
+      <Sidebar />
       <Footer />
     </div>
   );

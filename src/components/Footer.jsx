@@ -6,9 +6,9 @@ import { sidebarAtom } from "../store/atoms/sidebarAtom";
 export default function Footer() {
   const isAuthenticated = useRecoilValue(authAtom); 
   const isSidebarOpen = useRecoilValue(sidebarAtom); 
-
-  const footerClasses = `bg-[#fbfff5] shadow-lg border-t-2 border-gray-200 rounded-t-lg text-sm md:text-base font-medium ${
-    isAuthenticated ? (isSidebarOpen ? "ml-56 mr-4" : "lg:ml-32 mr-8") : "mx-4"
+  // console.log(isSidebarOpen)
+  const footerClasses = `bg-[#fbfff5] shadow-md border-2 border-gray-200 rounded-t-lg text-sm md:text-base font-medium ${
+    isAuthenticated ? (isSidebarOpen ? "ml-56 mr-4" : "ml-28 mr-4") : "mx-4"
   }`;
 
   return (
@@ -35,7 +35,7 @@ export default function Footer() {
         </div>
         <div className="w-full md:w-auto mt-8 md:mt-0">
           <p className="text-center md:text-right text-gray-600">
-            © 2024 VersionVaultHub. All rights reserved.
+            © 2024 VersionVaultHub, All rights reserved.
           </p>
         </div>
       </div>
