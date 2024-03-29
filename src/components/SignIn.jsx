@@ -20,6 +20,7 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+console.log("Entered")
     if (profileInfo) {
       axios
         .get(`http://localhost:3000/auth`, {
@@ -61,17 +62,9 @@ const SignIn = () => {
     }
   }, [userInfo, profileInfo]);
 
-  const login = useGoogleLogin({
-    onSuccess: (response) => {
-      setUserInfo(response);
-      Cookies.set("userInfo", JSON.stringify(response));
-      console.log("Success");
-    },
-    onError: (error) => {
-      console.log(`Login Failed: ${error}`);
-      alert("Login failed. Please try again.");
-    },
-  });
+  const login = () => {
+    window.location.href = "http://localhost:3000/auth/google"
+  }
 
   return (
     <div className="h-screen w-screen flex justify-center items-center bg-[#F9F6EE] ">
