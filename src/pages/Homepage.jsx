@@ -6,15 +6,17 @@ import Sidebar from '../components/Sidebar'
 import { sidebarAtom } from '../store/atoms/sidebarAtom'
 import { useRecoilValue } from 'recoil'
 import { authAtom } from '../store/atoms/auth'
+
 const Homepage = () => {
   const isSidebarOpen = useRecoilValue(sidebarAtom); 
-  const isAuthenticated = useRecoilValue(authAtom)
+  const auth = useRecoilValue(authAtom)
+  console.log(auth)
 
   return (
 <div className='flex flex-col min-h-screen'>
     <Header />
-    {isAuthenticated? <Sidebar /> : null}
-    <div className={`flex-1 flex flex-col ${!isAuthenticated? "ml-12" : isSidebarOpen? "ml-64" : "ml-36"}`}>
+    {auth.isAuthenticated? <Sidebar /> : null}
+    <div className={`flex-1 flex flex-col ${!auth.isAuthenticated? "ml-12" : isSidebarOpen? "ml-64" : "ml-36"}`}>
         <HeroSection />
     </div>
     <Footer />

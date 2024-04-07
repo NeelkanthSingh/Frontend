@@ -4,11 +4,11 @@ import { authAtom } from "../store/atoms/auth";
 import { sidebarAtom } from "../store/atoms/sidebarAtom";
 
 export default function Footer() {
-  const isAuthenticated = useRecoilValue(authAtom); 
+  const auth = useRecoilValue(authAtom); 
   const isSidebarOpen = useRecoilValue(sidebarAtom); 
-  // console.log(isSidebarOpen)
+
   const footerClasses = `bg-[#fbfff5] shadow-md border-2 border-gray-200 rounded-t-lg text-sm md:text-base font-medium ${
-    isAuthenticated ? (isSidebarOpen ? "ml-56 mr-4" : "ml-28 mr-4") : "mx-4"
+    auth.isAuthenticated ? (isSidebarOpen ? "ml-56 mr-4" : "ml-28 mr-4") : "mx-4"
   }`;
 
   return (

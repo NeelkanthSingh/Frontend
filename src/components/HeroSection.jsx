@@ -5,7 +5,7 @@ import { Button } from './Button'
 import { useNavigate } from 'react-router-dom'
 
 export const HeroSection = () => {
-  const isAuthenticated = useRecoilValue(authAtom)
+  const auth = useRecoilValue(authAtom)
   const navigate = useNavigate();
 
   return (
@@ -23,7 +23,7 @@ export const HeroSection = () => {
             </span>
           </h1>
           <div className="space-x-4 font-base">
-            {!isAuthenticated && (
+            {!auth.isAuthenticated && (
               <Button onClick={() => navigate("/signin")}>
                 Get Started
               </Button>
