@@ -1,9 +1,9 @@
 import React from "react";
 import Header from "./Header";
-import TitleTextWrapperCard from "./TitleTextWrapperCard";
-import FeatureTextWrapperCard from "./FeatureTextWrapperCard";
-import OverflowWrapperCard from "./OverflowWrapperCard";
-import OptionFeatureWrapperCard from "./OptionFeatureWrapperCard";
+import TitleTextWrapperCard from "./Wrappers/TitleTextWrapperCard";
+import FeatureTextWrapperCard from "./Wrappers/FeatureTextWrapperCard";
+import OverflowWrapperCard from "./Wrappers/OverflowWrapperCard";
+import OptionFeatureWrapperCard from "./Wrappers/OptionFeatureWrapperCard";
 
 const InsideDocument = () => {
   return (

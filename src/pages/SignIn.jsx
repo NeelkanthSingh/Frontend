@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import OverflowWrapperCard from "./OverflowWrapperCard";
+import OverflowWrapperCard from "../components/Wrappers/OverflowWrapperCard";
 import { authAtom } from "../store/atoms/auth";
 import { useRecoilValue } from "recoil";
 import { useAuthListener } from "../hooks/useAuthListener";

@@ -1,6 +1,6 @@
 import React from "react";
 import Header from "./Header";
-import OverflowWrapperCard from "./OverflowWrapperCard";
+import OverflowWrapperCard from "./Wrappers/OverflowWrapperCard";
 
 export default CreateDocument = () => {
   return (
