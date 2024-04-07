@@ -1,66 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useGoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import Cookies from "js-cookie";
 import OverflowWrapperCard from "./OverflowWrapperCard";
+import { authAtom } from "../store/atoms/auth";
+import { useRecoilValue } from "recoil";
+import { useAuthListener } from "../hooks/useAuthListener";
 
 const SignIn = () => {
-  // Declaring states
-  const [userInfo, setUserInfo] = useState(
-    Cookies.get("userInfo") ? JSON.parse(Cookies.get("userInfo")) : undefined
-  );
-
-  const [profileInfo, setProfileInfo] = useState(
-    Cookies.get("profileInfo")
-      ? JSON.parse(Cookies.get("profileInfo"))
-      : undefined
-  );
-
+  useAuthListener();
+  const auth = useRecoilValue(authAtom)
   const navigate = useNavigate();
 
   useEffect(() => {
-console.log("Entered")
-    if (profileInfo) {
-      axios
-        .get(`http://localhost:3000/auth`, {
-          params: {
-            email: profileInfo.email,
-          },
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
-        .then((response) => {
-          const data = response.data;
-          const emailValue = profileInfo.email;
-          if (data.firstUser === false) {
-            navigate("/dashboard", { state: { username: data.username } });
-          } else {
-            navigate("/username", { state: { email: emailValue } });
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching user data:", error);
-        });
-    } else if (userInfo && userInfo.access_token) {
-      axios
-        .get(`https://www.googleapis.com/oauth2/v1/userinfo`, {
-          headers: {
-            Authorization: `Bearer ${userInfo.access_token}`,
-            Accept: "application/json",
-          },
-        })
-        .then((response) => {
-          const profileInfoString = JSON.stringify(response.data);
-          setProfileInfo(response.data);
-          Cookies.set("profileInfo", profileInfoString);
-        })
-        .catch((error) => {
-          console.error("Error fetching Google user info:", error);
-        });
+    if(auth.isAuthenticated){
+        navigate("/dashboard");
     }
-  }, [userInfo, profileInfo]);
+  }, [auth]);
 
   const login = () => {
     window.location.href = "http://localhost:3000/auth/google"
@@ -101,8 +55,8 @@ console.log("Entered")
             </p>
           </div>
         </div>
-      </OverflowWrapperCard>
-    </div>
+  </OverflowWrapperCard>
+</div>
   );
 };
 
