@@ -10,7 +10,7 @@ const SignIn = () => {
   const auth = useRecoilValue(authAtom);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state?.from?.pathname || "/dashboard";
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ const SignIn = () => {
   return (
     <div className="h-screen w-screen flex justify-center items-center bg-[#F9F6EE]">
       {isLoading ? (
-        <div>Loading...</div> // Replace this with your loading icon component
+        <div>Loading...</div> 
       ) : (
         <OverflowWrapperCard>
           <div className="font-serif text-center px-10 pb-5 pt-10">
