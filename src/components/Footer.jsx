@@ -4,8 +4,8 @@ import { authAtom } from "../store/atoms/authAtom";
 import { sidebarAtom } from "../store/atoms/sidebarAtom";
 
 export default function Footer() {
-  const auth = useRecoilValue(authAtom); 
-  const isSidebarOpen = useRecoilValue(sidebarAtom); 
+  const auth = useRecoilValue(authAtom);
+  const isSidebarOpen = useRecoilValue(sidebarAtom);
 
   const footerClasses = `bg-[#fbfff5] shadow-md border-2 border-gray-200 rounded-t-lg text-sm md:text-base font-medium ${
     auth?.accessToken ? (isSidebarOpen ? "ml-56 mr-4" : "ml-28 mr-4") : "mx-4"
@@ -17,17 +17,26 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-around w-full md:w-auto">
           <ul className="flex flex-col md:flex-row items-center text-center md:text-left space-y-4 md:space-y-0 md:space-x-6 lg:space-x-12">
             <li>
-              <Link className="font-normal text-gray-600 hover:text-gray-800 transition-colors duration-200" to="#">
+              <Link
+                className="font-normal text-gray-600 hover:text-gray-800 transition-colors duration-200"
+                to="#"
+              >
                 Privacy Policy
               </Link>
             </li>
             <li>
-              <Link className="font-normal text-gray-600 hover:text-gray-800 transition-colors duration-200" to="#">
+              <Link
+                className="font-normal text-gray-600 hover:text-gray-800 transition-colors duration-200"
+                to="#"
+              >
                 Terms of Service
               </Link>
             </li>
             <li>
-              <Link className="font-normal text-gray-600 hover:text-gray-800 transition-colors duration-200" to="#">
+              <Link
+                className="font-normal text-gray-600 hover:text-gray-800 transition-colors duration-200"
+                to="#"
+              >
                 Contact Us
               </Link>
             </li>
