@@ -6,12 +6,16 @@ const useRefreshToken = () => {
     const setAuth = useSetRecoilState(authAtom);
 
     const refresh = async () => {
-        const response = await axios.get('auth/refresh/', {
-            withCredentials: true
-        });
-
-        setAuth({ accessToken: response.data.accessToken });
-        return response.data.accessToken;
+        try{
+            const response = await axios.get('auth/refresh/', {
+                withCredentials: true
+            });
+            setAuth({ accessToken: response.data.accessToken });
+            return response.data.accessToken;
+        }catch(error){
+            console.error("Please login again, your session has expired.");
+            throw new Error("Please login again, your session has expired.");
+        }   
     }
 
     return refresh;

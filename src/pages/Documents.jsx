@@ -11,8 +11,8 @@ const Documents = () => {
   const isSidebarOpen = useRecoilValue(sidebarAtom);
   const auth = useRecoilValue(authAtom);
 
-  const sidebar = auth.isAuthenticated ? <Sidebar /> : null;
-  const marginLeft = !auth.isAuthenticated
+  const sidebar = auth?.accessToken ? <Sidebar /> : null;
+  const marginLeft = !auth?.accessToken
     ? 'ml-12'
     : isSidebarOpen
     ? 'ml-64'
