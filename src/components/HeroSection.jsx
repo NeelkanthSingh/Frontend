@@ -1,6 +1,6 @@
 import React from 'react'
 import { useRecoilValue } from 'recoil'
-import { authAtom } from '../store/atoms/auth'
+import { authAtom } from '../store/atoms/authAtom'
 import { Button } from './Button'
 import { useNavigate } from 'react-router-dom'
 
@@ -23,8 +23,8 @@ export const HeroSection = () => {
             </span>
           </h1>
           <div className="space-x-4 font-base">
-            {!auth.isAuthenticated && (
-              <Button onClick={() => navigate("/signin")}>
+            {!auth?.accessToken && (
+              <Button onClick={() => navigate("/dashboard")}>
                 Get Started
               </Button>
             )}

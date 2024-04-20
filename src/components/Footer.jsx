@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useRecoilValue } from "recoil";
-import { authAtom } from "../store/atoms/auth";
+import { authAtom } from "../store/atoms/authAtom";
 import { sidebarAtom } from "../store/atoms/sidebarAtom";
 
 export default function Footer() {
@@ -8,7 +8,7 @@ export default function Footer() {
   const isSidebarOpen = useRecoilValue(sidebarAtom); 
 
   const footerClasses = `bg-[#fbfff5] shadow-md border-2 border-gray-200 rounded-t-lg text-sm md:text-base font-medium ${
-    auth.isAuthenticated ? (isSidebarOpen ? "ml-56 mr-4" : "ml-28 mr-4") : "mx-4"
+    auth?.accessToken ? (isSidebarOpen ? "ml-56 mr-4" : "ml-28 mr-4") : "mx-4"
   }`;
 
   return (

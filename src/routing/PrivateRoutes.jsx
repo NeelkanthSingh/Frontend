@@ -1,14 +1,12 @@
-import React from "react";
-import { Route, Navigate } from "react-router-dom";
-import { authAtom } from "../store/atoms/auth";
+import { Navigate, useLocation } from "react-router-dom";
+import { authAtom } from "../store/atoms/authAtom";
 import { useRecoilValue } from "recoil";
-import { useAuthListener } from "../hooks/useAuthListener";
 
 const PrivateRoute = ({ children }) => {
-  useAuthListener();
   const auth = useRecoilValue(authAtom);
+  const location = useLocation();
 
-  return auth.isAuthenticated ? ( children ) : ( <Navigate to="/signin" replace /> );
+  return auth?.accessToken ? ( children ) : ( <Navigate to="/signin" state={{ from: location }} replace /> );
 };
 
 export default PrivateRoute;

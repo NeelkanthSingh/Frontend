@@ -1,62 +1,82 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import OverflowWrapperCard from "../components/Wrappers/OverflowWrapperCard";
-import { authAtom } from "../store/atoms/auth";
+import { authAtom } from "../store/atoms/authAtom";
 import { useRecoilValue } from "recoil";
-import { useAuthListener } from "../hooks/useAuthListener";
+import useRefreshToken from "../hooks/useRefreshToken";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 const SignIn = () => {
-  useAuthListener();
-  const auth = useRecoilValue(authAtom)
+  const refresh = useRefreshToken();
+  const auth = useRecoilValue(authAtom);
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    if(auth.isAuthenticated){
-        navigate("/dashboard");
+    const verifyRefreshToken = async () => {
+      try {
+        setIsLoading(true);
+        await refresh();
+        setIsLoading(false);
+      } catch (err) {
+        setIsLoading(false);
+        console.error(err);
+      }
+    };
+
+    if (!auth?.accessToken) {
+      verifyRefreshToken();
+    } else {
+      navigate(from);
     }
-  }, [auth]);
+  }, [auth, refresh]);
 
   const login = () => {
-    window.location.href = "http://localhost:3000/auth/google"
-  }
+    window.location.href = "http://localhost:3000/auth/google";
+  };
 
   return (
-    <div className="h-screen w-screen flex justify-center items-center bg-[#F9F6EE] ">
-      <OverflowWrapperCard>
-        <div className="font-serif text-center px-10 pb-5 pt-10">
-          <div className="text-3xl mb-7 text-gray-900">Sign In</div>
-          <div className="text-xl mb-9">
-            Welcome to <span className="text-green-800">VersionVaultHub</span>
+    <div className="h-screen w-screen flex justify-center items-center bg-[#F9F6EE]">
+      {isLoading ? (
+        <div>Loading...</div> // Replace this with your loading icon component
+      ) : (
+        <OverflowWrapperCard>
+          <div className="font-serif text-center px-10 pb-5 pt-10">
+            <div className="text-3xl mb-7 text-gray-900">Sign In</div>
+            <div className="text-xl mb-9">
+              Welcome to <span className="text-green-800">VersionVaultHub</span>
+            </div>
+            <br />
+            <div className="flex justify-center mb-9">
+              <a className="cursor-pointer" onClick={login}>
+                <img
+                  src="google_signin.svg"
+                  alt="Sign up with Google"
+                  style={{ width: "220px", height: "60px" }}
+                />
+              </a>
+            </div>
+            <br />
+            <div className="text-xs mb-1 font-sans">
+              <p>
+                Click 'Sign In' to agree to VersionVaultHub's{" "}
+                <span className="underline">
+                  <a href="/">Terms of Service</a>
+                </span>
+              </p>
+              <p>
+                and acknowledge that VersionVaultHub's{" "}
+                <span className="underline">
+                  <a href="/">Privacy Policy</a>
+                </span>{" "}
+                applies to you.
+              </p>
+            </div>
           </div>
-          <br />
-          <div className="flex justify-center mb-9">
-            <a className="cursor-pointer" onClick={() => login()}>
-              <img
-                src="google_signin.svg"
-                alt="Sign up with Google"
-                style={{ width: "220px", height: "60px" }}
-              />
-            </a>
-          </div>
-          <br />
-          <div className="text-xs mb-1 font-sans">
-            <p>
-              Click 'Sign In' to agree to VersionVaultHub's{" "}
-              <span className=" underline">
-                <a href="/">Terms of Service</a>
-              </span>
-            </p>
-            <p>
-              and acknowledge that VersionVaultHub's{" "}
-              <span className=" underline">
-                <a href="/">Privacy Policy</a>
-              </span>{" "}
-              applies to you.
-            </p>
-          </div>
-        </div>
-  </OverflowWrapperCard>
-</div>
+        </OverflowWrapperCard>
+      )}
+    </div>
   );
 };
 

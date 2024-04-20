@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { SvgHome, SvgDocuments, SvgUser } from "./Svgcomp";
-import { IconLogout } from "@tabler/icons-react";
-import { IconFolderPlus, IconEdit } from "@tabler/icons-react";
+import { SvgHome, SvgDocuments, SvgUser, SvgCopy, SvgUpdate, SvgRename, SvgDelete, SvgDeleteUser, SvgRenameUser } from "./Svgcomp";
+import { IconFolderPlus, IconEdit, IconLogout } from "@tabler/icons-react";
 import { useRecoilState, useRecoilValue } from "recoil";
-import { authAtom } from "../store/atoms/auth";
+import { authAtom } from "../store/atoms/authAtom";
 import { sidebarAtom } from "../store/atoms/sidebarAtom";
 import { IconMenu2 } from "@tabler/icons-react";
 
 const Sidebar = () => {
   const navigate = useNavigate();
 
-  const isAuthenticated = useRecoilValue(authAtom); 
+  const auth = useRecoilValue(authAtom); 
   const [isSidebarOpen, setIsSideOpen] = useRecoilState(sidebarAtom); 
 
   const sideBarItems = [
@@ -24,21 +23,20 @@ const Sidebar = () => {
   ]
 
   const featureSidebar2 = [
-    { id: 4, name: "Copy Public Link"},
-    { id: 5, name: "Update Doc"},
-    { id: 6, name: "Rename Doc"},
-    { id: 7, name: "Delete Connection"},
+    { id: 4, name: "Copy Public Link", href: '/doc/copy', icon: <SvgCopy />},
+    { id: 5, name: "Update Doc", href: '/doc/update', icon: <SvgUpdate />},
+    { id: 6, name: "Rename Doc", href: '/doc/rename', icon: <SvgRename />},
+    { id: 7, name: "Delete Connection", href: '/doc/delete', icon: <SvgDelete />},
   ]
 
   const featureSidebar3 = [
-    { id: 8, name: "Rename User"},
-    { id: 9, name: "Delete User"}
+    { id: 8, name: "Rename User", href: '/user/rename', icon: <SvgRenameUser />},
+    { id: 9, name: "Delete User", href: '/user/delete', icon: <SvgDeleteUser />}
   ]
 
   const bottomItems = [
     { id: 10, name: "User", href: "/profile", icon: <SvgUser /> },
-    { id: 11, name: "Edit", href: "/editprofile", icon: <IconEdit color="green" />, disabledColor: "gray" },
-    { id: 12, name: "Logout", href: "/logout", icon: <IconLogout color="red" /> }
+    { id: 11, name: "Logout", href: "/logout", icon: <IconLogout color="red" /> }
   ];
 
 
@@ -62,6 +60,48 @@ const Sidebar = () => {
                 ))
               }
             </nav>
+            <div className={`mt-8 ${window.Location.href == "/doc"? "border-t" : null}`}>
+              <nav className="flex flex-col gap-4 mt-8 justify-start ">
+                {window.Location.href == "/doc" && featureSidebar1.map((item) => (
+                  <button
+                    key={item.id}
+                    className={`${buttonsClass} ${buttonSidebarClass}`}
+                    onClick={() => {}}>
+                    {React.cloneElement(item.icon, { disabled: item.disabled !== undefined ? item.disabled : false, color: item.disabled ? item.disabledColor : undefined })}
+                    <span className={` ${isSidebarOpen ? "" : "hidden"}`}> {item.name} </span>
+                  </button>
+                ))
+              }
+              </nav>
+            </div>
+            <div className={`mt-8 ${window.Location.href == "/doc"? "border-t" : null}`}>
+              <nav className="flex flex-col gap-4 mt-8 justify-start ">
+                {window.Location.href == "/doc" && featureSidebar2.map((item) => (
+                  <button
+                    key={item.id}
+                    className={`${buttonsClass} ${buttonSidebarClass}`}
+                    onClick={() => {}}>
+                    {React.cloneElement(item.icon, { disabled: item.disabled !== undefined ? item.disabled : false, color: item.disabled ? item.disabledColor : undefined })}
+                    <span className={` ${isSidebarOpen ? "" : "hidden"}`}> {item.name} </span>
+                  </button>
+                ))
+              }
+              </nav>
+            </div>
+            <div className={`mt-8 ${"border-t"}`}>
+              <nav className="flex flex-col gap-4 mt-8 justify-start ">
+                {featureSidebar3.map((item) => (
+                  <button
+                    key={item.id}
+                    className={`${buttonsClass} ${buttonSidebarClass}`}
+                    onClick={() => {}}>
+                    {React.cloneElement(item.icon, { disabled: item.disabled !== undefined ? item.disabled : false, color: item.disabled ? item.disabledColor : undefined })}
+                    <span className={` ${isSidebarOpen ? "" : "hidden"}`}> {item.name} </span>
+                  </button>
+                ))
+              }
+              </nav>
+            </div>
             <div className="mt-8 border-t">
               <nav className="flex flex-col gap-4 mt-8 justify-start ">
                 {bottomItems.map((item) => (
@@ -78,7 +118,7 @@ const Sidebar = () => {
             </div>
           </div>
           <div className={`${buttonsClass} ${buttonSidebarClass}`}>
-            {isAuthenticated && (
+            {auth?.accessToken && (
               <div className="flex cursor-pointer" onClick={()=>(setIsSideOpen(!isSidebarOpen))}>
                 <IconMenu2 />
                 <div className="flex flex-col justify-center">
