@@ -41,7 +41,7 @@ const SignIn = () => {
   };
 
   return (
-    <div className="h-screen w-screen flex justify-center items-center bg-[#F9F6EE]">
+    <div className="h-screen w-screen flex justify-center items-center">
       {isLoading ? (
         <div>Loading...</div> 
       ) : (
