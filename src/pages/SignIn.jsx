@@ -10,9 +10,7 @@ const SignIn = () => {
   const auth = useRecoilValue(authAtom);
   const navigate = useNavigate();
   const location = useLocation();
-  const from = (localStorage.getItem('from') || location.state?.from?.pathname) || "/dashboard";
-  const [isSessionExpired, setIsSessionExpired] = useState(true);
-  localStorage.removeItem('from');  
+  const from = location.state?.from?.pathname || "/dashboard";
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -20,20 +18,23 @@ const SignIn = () => {
       try {
         await refresh();
         setIsLoading(false);
-        setIsSessionExpired(false);
       } catch (err) {
         setIsLoading(false);
-        localStorage.setItem('from', location.state?.from.pathname);
-        console.error(err);
+        throw err;
       }
     };
 
-    if (isSessionExpired && !auth?.accessToken) {
-      verifyRefreshToken();
-    } else if(!isSessionExpired){
+    if (!auth?.accessToken) {
+      try {
+        verifyRefreshToken();
+      } catch (error) {
+        console.error(error);
+      }
+    } else{
       navigate(from);
     }
-  }, [auth, refresh, isSessionExpired]);
+
+  }, [auth, refresh]);
 
   const login = () => {
     window.location.href = "http://localhost:3000/auth/google";
