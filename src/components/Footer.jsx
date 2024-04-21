@@ -13,41 +13,22 @@ export default function Footer() {
 
   return (
     <footer className={footerClasses}>
-      <div className="container max-w-6xl px-4 py-4 mx-auto flex flex-wrap justify-between items-center">
-        <div className="flex flex-col md:flex-row justify-around w-full md:w-auto">
-          <ul className="flex flex-col md:flex-row items-center text-center md:text-left space-y-4 md:space-y-0 md:space-x-6 lg:space-x-12">
-            <li>
-              <Link
-                className="font-normal text-gray-600 hover:text-gray-800 transition-colors duration-200"
-                to="#"
-              >
-                Privacy Policy
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="font-normal text-gray-600 hover:text-gray-800 transition-colors duration-200"
-                to="#"
-              >
-                Terms of Service
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="font-normal text-gray-600 hover:text-gray-800 transition-colors duration-200"
-                to="#"
-              >
-                Contact Us
-              </Link>
-            </li>
-          </ul>
-        </div>
-        <div className="w-full md:w-auto mt-8 md:mt-0">
-          <p className="text-center md:text-right text-gray-600">
-            © 2024 VersionVaultHub, All rights reserved.
-          </p>
-        </div>
-      </div>
+      <footer className="footer p-10 bg-base-200 text-base-content">
+        <aside>
+          <img src="logo.png" width="40" height="40" alt="" />
+          <p>Copyright © 2024<br />All right reserved by VersionVaultHub</p>
+        </aside>
+        <nav>
+          <h6 className="footer-title">Company</h6> 
+          <a className="link link-hover">About us</a>
+          <a className="link link-hover">Contact</a>
+        </nav> 
+        <nav>
+          <h6 className="footer-title">Legal</h6> 
+          <a className="link link-hover">Terms of use</a>
+          <a className="link link-hover">Privacy policy</a>
+        </nav>
+      </footer>
     </footer>
   );
 }
