@@ -14,14 +14,14 @@ export const HeroSection = () => {
           <div className="hidden lg:flex justify-end w-80">
             <img src="heroSection.png" alt="Illustration" />
           </div>
-          <div className="text-center lg:text-left col-span-2 flex justify-center">
+          <div className="text-center lg:text-left col-span-2">
             <h1 className="text-gray-900 mb-6 font-heading text-center">
               <span className="block text-[#2d503a] text-[28px]">Your Ultimate Document Version Control Simplified</span>
               <span className="block text-[#22c55e] py-4 text-[48px] font-bold">
                 Version Vault Hub
               </span>
             </h1>
-            <div className="space-x-4 font-base">
+            <div className="space-x-4 font-base text-center">
               {!auth?.accessToken && (
                 <Button onClick={() => navigate("/dashboard")}>
                   Get Started
