@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 import { authAtom } from '../store/atoms/authAtom';
 import axios from '../api/axios';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -7,7 +7,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 const DocumentComponent = () => {
     const navigate = useNavigate();
     const location = useLocation();
-    const auth = useRecoilValue(authAtom);
+    const [auth, setAuth]= useRecoilState(authAtom);
     const [documents, setDocuments] = useState([]);
     const [search, setSearch] = useState('');
 
@@ -22,6 +22,8 @@ const DocumentComponent = () => {
                 });
                 setDocuments(response.data.documents);
             } catch (error) {
+                console.error(error);
+                setAuth({});
                 navigate("/signin", { state: { from: location } });
             }
         };
