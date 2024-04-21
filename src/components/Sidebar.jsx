@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { SvgHome, SvgDocuments, SvgUser, SvgCopy, SvgUpdate, SvgRename, SvgDelete, SvgDeleteUser, SvgRenameUser } from "./Svgcomp";
 import { IconFolderPlus, IconLogout } from "@tabler/icons-react";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -9,10 +10,11 @@ import { IconMenu2 } from "@tabler/icons-react";
 const Sidebar = () => {
   const auth = useRecoilValue(authAtom); 
   const [isSidebarOpen, setIsSideOpen] = useRecoilState(sidebarAtom); 
+  const location = useLocation();
 
   const sideBarItems = [
     { id: 1, name: "Home", href: "/", icon: <SvgHome /> },
-    { id: 2, name: "Docs", href: "/mydocuments", icon: <SvgDocuments /> },
+    { id: 2, name: "Docs", href: "/docs", icon: <SvgDocuments /> },
   ];
 
   const featureSidebar1 = [
@@ -41,7 +43,7 @@ const Sidebar = () => {
 
   return (
     <>
-      <aside className={`bg-[#fbfff5] py-8 px-6 flex felx-col rounded-lg border-r border-t fixed top-[68px] bottom-0 z-50 shadow-md ${isSidebarOpen ? "w-52" : "w-24"}`}>
+      <aside className={`py-8 px-6 flex felx-col rounded-lg border-r border-t fixed top-[68px] bottom-0 z-50 shadow-md ${isSidebarOpen ? "w-52" : "w-24"}`}>
         <div className="flex flex-col justify-between">
           <div>
             <nav className="flex flex-col gap-4">
@@ -56,9 +58,9 @@ const Sidebar = () => {
                 </button>
               ))}
             </nav>
-            <div className={`mt-8 ${window.Location.href === "/doc" ? "border-t" : null}`}>
+            <div className={`mt-8 ${location.pathname === "/docs" ? "border-t" : null}`}>
               <nav className="flex flex-col gap-4 mt-8 justify-start ">
-                {window.Location.href === "/doc" && featureSidebar1.map((item) => (
+                {location.pathname === "/docs" && featureSidebar1.map((item) => (
                   <button
                     key={item.id}
                     className={`${buttonsClass} ${buttonSidebarClass}`}
@@ -70,9 +72,9 @@ const Sidebar = () => {
                 ))}
               </nav>
             </div>
-            <div className={`mt-8 ${window.Location.href === "/doc" ? "border-t" : null}`}>
+            <div className={`mt-8 ${location.pathname === "/doc" ? "border-t" : null}`}>
               <nav className="flex flex-col gap-4 mt-8 justify-start ">
-                {window.Location.href === "/doc" && featureSidebar2.map((item) => (
+                {location.pathname === "/doc" && featureSidebar2.map((item) => (
                   <button
                     key={item.id}
                     className={`${buttonsClass} ${buttonSidebarClass}`}
@@ -84,9 +86,9 @@ const Sidebar = () => {
                 ))}
               </nav>
             </div>
-            <div className={`mt-8 border-t`}>
+            <div className={`mt-8 ${location.pathname === "/profile" ? "border-t" : null}`}>
               <nav className="flex flex-col gap-4 mt-8 justify-start ">
-                {featureSidebar3.map((item) => (
+                {location.pathname === "/profile" && featureSidebar3.map((item) => (
                   <button
                     key={item.id}
                     className={`${buttonsClass} ${buttonSidebarClass}`}

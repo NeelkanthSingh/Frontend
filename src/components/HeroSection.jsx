@@ -34,32 +34,3 @@ export const HeroSection = () => {
     </div>
   );
 };
-
-function VersionVaultHubInfo() {
-  return (
-    <div>
-      <Introduction />
-      <br />
-      <Features />
-    </div>
-  );
-}
-
-function Introduction() {
-  return (
-    <section>
-      In the digital age, keeping your documents up-to-date shouldn't be a chore. At VersionVaultHub, we understand
-      the importance of efficiency and consistency.
-    </section>
-  );
-}
-
-function Features() {
-  return (
-    <section>
-      That's why we've created a groundbreaking platform designed for students and professionals alike, enabling
-      you to create a single, public link for your documents that automatically updates to the latest version. No
-      more constant link changes. No more hassle.
-    </section>
-  );
-}
