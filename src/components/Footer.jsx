@@ -7,7 +7,7 @@ export default function Footer() {
   const auth = useRecoilValue(authAtom);
   const isSidebarOpen = useRecoilValue(sidebarAtom);
 
-  const footerClasses = `bg-[#fbfff5] shadow-md border-2 border-gray-200 rounded-t-lg text-sm md:text-base font-medium ${
+  const footerClasses = `border-2 border-gray-200 rounded-base text-sm md:text-base font-medium ${
     auth?.accessToken ? (isSidebarOpen ? "ml-56 mr-4" : "ml-28 mr-4") : "mx-4"
   }`;
 

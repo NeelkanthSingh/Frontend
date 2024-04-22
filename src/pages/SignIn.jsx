@@ -46,7 +46,7 @@ const SignIn = () => {
         <div>Loading...</div> 
       ) : (
         <OverflowWrapperCard>
-          <div className="font-serif text-center px-10 pb-5 pt-10">
+          <div className="text-center px-10 pb-5 pt-10">
             <div className="text-3xl mb-7 text-gray-900">Sign In</div>
             <div className="text-xl mb-9">
               Welcome to <span className="text-green-800">VersionVaultHub</span>
@@ -62,7 +62,7 @@ const SignIn = () => {
               </a>
             </div>
             <br />
-            <div className="text-xs mb-1 font-sans">
+            <div className="text-xs mb-1">
               <p>
                 Click 'Sign In' to agree to VersionVaultHub's{" "}
                 <span className="underline">

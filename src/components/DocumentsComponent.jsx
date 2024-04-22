@@ -39,7 +39,7 @@ const DocumentComponent = () => {
         <div className="p-4">
             <div className="flex items-center justify-between mb-4">
                 <input
-                    className="border-2 border-gray-300 bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
+                    className="border-2 border-secondary bg-white h-10 px-5 pr-16 rounded-lg text-sm focus:outline-none"
                     type="search"
                     name="search"
                     placeholder="Search documents"
@@ -50,7 +50,7 @@ const DocumentComponent = () => {
             </div>
             <div className="grid grid-cols-3 gap-4">
                 {filteredDocuments.map((doc, index) => (
-                    <div key={index} className="border p-4 rounded-lg">
+                    <div key={index} className="border p-4 rounded-lg border-gray-300">
                         <h2 className="font-bold mb-2">{doc.name}</h2>
                         <p>{doc.description}</p>
                     </div>

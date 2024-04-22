@@ -54,7 +54,7 @@ const Sidebar = () => {
         </div>
       </dialog>
 
-      <aside className={`py-8 px-6 flex felx-col rounded-lg border-r border-t fixed top-[68px] bottom-0 z-50 shadow-md ${isSidebarOpen ? "w-52" : "w-24"}`}>
+      <aside className={`py-8 px-6 flex felx-col rounded-lg border-t-2 border-r-2 border-b-2 border-gray-200 fixed top-[68px] bottom-0 z-50 ${isSidebarOpen ? "w-52" : "w-24"}`}>
         <div className="flex flex-col justify-between">
           <div>
             <nav className="flex flex-col gap-4">
@@ -69,7 +69,7 @@ const Sidebar = () => {
                 </button>
               ))}
             </nav>
-            <div className={`mt-8 ${location.pathname === "/docs" ? "border-t" : null}`}>
+            <div className={`mt-8 ${location.pathname === "/docs" ? "border-t border-base-content" : null}`}>
               <nav className="flex flex-col gap-4 mt-8 justify-start ">
                 {location.pathname === "/docs" && featureSidebar1.map((item) => (
                   <button
@@ -83,7 +83,7 @@ const Sidebar = () => {
                 ))}
               </nav>
             </div>
-            <div className={`mt-8 ${location.pathname === "/doc" ? "border-t" : null}`}>
+            <div className={`mt-8 ${location.pathname === "/doc" ? "border-t border-base-content" : null}`}>
               <nav className="flex flex-col gap-4 mt-8 justify-start ">
                 {location.pathname === "/doc" && featureSidebar2.map((item) => (
                   <button
@@ -97,7 +97,7 @@ const Sidebar = () => {
                 ))}
               </nav>
             </div>
-            <div className={`mt-8 ${location.pathname === "/profile" ? "border-t" : null}`}>
+            <div className={`mt-8 ${location.pathname === "/profile" ? "border-t border-base-content" : null}`}>
               <nav className="flex flex-col gap-4 mt-8 justify-start ">
                 {location.pathname === "/profile" && featureSidebar3.map((item) => (
                   <button
@@ -111,7 +111,7 @@ const Sidebar = () => {
                 ))}
               </nav>
             </div>
-            <div className="mt-8 border-t">
+            <div className="mt-8 border-t border-base-content">
               <nav className="flex flex-col gap-4 mt-8 justify-start ">
                 {bottomItems.map((item) => (
                   <button
