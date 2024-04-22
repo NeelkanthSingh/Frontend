@@ -6,9 +6,10 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { authAtom } from "../store/atoms/authAtom";
 import { sidebarAtom } from "../store/atoms/sidebarAtom";
 import { IconMenu2 } from "@tabler/icons-react";
+import axios from "../api/axios";
 
 const Sidebar = () => {
-  const auth = useRecoilValue(authAtom);
+  const [auth, setAuth] = useRecoilState(authAtom);
   const [isSidebarOpen, setIsSidebarOpen] = useRecoilState(sidebarAtom);
   const location = useLocation();
   const navigate = useNavigate();
@@ -41,6 +42,10 @@ const Sidebar = () => {
 
   const buttonsClass = `inline-flex text-center items-center whitespace-nowrap rounded-md text-sm ring-offset-background transition-colors py-2 gap-2 text-black hover:font-bold hover:shadow-md hover:bg-error hover:font-bold hover:shadow-lg  hover:bg-[#dcf8d7]`;
   const buttonSidebarClass = `${isSidebarOpen ? "px-4 justify-start" : "h-8 w-8 justify-center"}`;
+
+  const logout = () => {
+    navigate("/logout", { replace: true });
+  };
 
   return (
     <>
@@ -103,7 +108,7 @@ const Sidebar = () => {
                   <button
                     key={item.id}
                     className={`${buttonsClass} ${buttonSidebarClass}`}
-                    onClick={() => { }}
+                    onClick={()=>{}}
                   >
                     {React.cloneElement(item.icon, { disabled: item.disabled !== undefined ? item.disabled : false, color: item.disabled ? item.disabledColor : undefined })}
                     <span className={`${isSidebarOpen ? "" : "hidden"}`}>{item.name}</span>
@@ -117,7 +122,10 @@ const Sidebar = () => {
                   <button
                     key={item.id}
                     className={`${buttonsClass} ${buttonSidebarClass}`}
-                    onClick={() => { }}
+                    onClick={() => { 
+                            if(item.id === 11){
+                              
+                              logout(); }}}
                   >
                     {React.cloneElement(item.icon, { disabled: item.disabled !== undefined ? item.disabled : false, color: item.disabled ? item.disabledColor : undefined })}
                     <span className={`${isSidebarOpen ? "" : "hidden"}`}>{item.name}</span>
