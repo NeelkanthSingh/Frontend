@@ -47,6 +47,28 @@ const Sidebar = () => {
     navigate("/logout", { replace: true });
   };
 
+
+  // const form = document.getElementById("submitDocument");
+
+  // form.addEventListener("submit", submitForm);
+
+  // function submitForm(e) {
+  //     e.preventDefault();
+  //     const name = document.getElementById("name");
+  //     const fileInput = document.getElementById("file");
+  //     const file = fileInput.files[0];
+  //     const fileName = name.value;
+  //     const formData = new FormData();
+  //     formData.append("name", fileName);
+  //     formData.append("file", file);
+  //     fetch("http://localhost:3000/upload/file", {
+  //         method: 'POST',
+  //         body: formData,
+  //     })
+  //     .then((res) => console.log(res))
+  //     .catch((err) => console.error("Error occurred", err));
+  // }
+
   return (
     <>
       <dialog id="my_modal_3" className="modal">
@@ -54,8 +76,10 @@ const Sidebar = () => {
           <form method="dialog">
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
           </form>
-          <input type="file" className="file-input file-input-bordered file-input-info w-full max-w-xs" />{"   "}
-          <button className="btn btn-active btn-neutral">Submit</button>
+          <form id="submitDocument" encType="multipart/form-data">
+            <input type="file" accept=".pdf,.doc,.docx" className="file-input file-input-bordered file-input-info w-full max-w-xs" />{"   "}
+            <button type="submit" className="btn btn-active btn-neutral">Submit</button>
+          </form>
         </div>
       </dialog>
 
