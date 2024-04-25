@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { SvgHome, SvgDocuments, SvgUser, SvgCopy, SvgUpdate, SvgRename, SvgDelete, SvgDeleteUser, SvgRenameUser } from "./Svgcomp";
 import { IconFolderPlus, IconLogout } from "@tabler/icons-react";
@@ -11,6 +11,9 @@ import axios from "../api/axios";
 const Sidebar = () => {
   const [auth, setAuth] = useRecoilState(authAtom);
   const [isSidebarOpen, setIsSidebarOpen] = useRecoilState(sidebarAtom);
+  const [file, setFile] = useState(null);
+  const [fileName, setFileName] = useState("");
+  const fileInput = useRef(null);
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -47,27 +50,34 @@ const Sidebar = () => {
     navigate("/logout", { replace: true });
   };
 
+  const submitForm = async (e) => {
+    e.preventDefault();
+    if (!file || fileName === "") {
+      if (!file && fileName === "")
+        return alert("Please select a file and enter the file name");
+      else if (!file)
+        alert("Please select a file");
+      else if (fileName === "")
+        alert("Please enter the file name");
+      return;
+    }
 
-  // const form = document.getElementById("submitDocument");
-
-  // form.addEventListener("submit", submitForm);
-
-  // function submitForm(e) {
-  //     e.preventDefault();
-  //     const name = document.getElementById("name");
-  //     const fileInput = document.getElementById("file");
-  //     const file = fileInput.files[0];
-  //     const fileName = name.value;
-  //     const formData = new FormData();
-  //     formData.append("name", fileName);
-  //     formData.append("file", file);
-  //     fetch("http://localhost:3000/upload/file", {
-  //         method: 'POST',
-  //         body: formData,
-  //     })
-  //     .then((res) => console.log(res))
-  //     .catch((err) => console.error("Error occurred", err));
-  // }
+    const formData = new FormData();
+    formData.append("name", fileName);
+    formData.append("file", file);
+    console.log(auth?.accessToken);
+    try {
+      const response = await axios.post('/upload/file', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'Authorization': `Bearer ${auth?.accessToken}`
+        }
+      });
+      console.log(response);
+    } catch (error) {
+      console.error("Error occurred", err)
+    }
+  }
 
   return (
     <>
@@ -76,13 +86,17 @@ const Sidebar = () => {
           <form method="dialog">
             <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
           </form>
-          <form id="submitDocument" encType="multipart/form-data">
-            <input type="file" accept=".pdf,.doc,.docx" className="file-input file-input-bordered file-input-info w-full max-w-xs" />{"   "}
-            <button type="submit" className="btn btn-active btn-neutral">Submit</button>
+          <form id="submitDocument" encType="multipart/form-data" onSubmit={submitForm}>
+            <label htmlFor="file" className="label">Select a file:</label>
+            <input type="file" accept=".pdf,.doc,.docx" className="file-input file-input-sm file-input-bordered file-input-info w-full max-w-xs" ref={fileInput} onChange={(e) => setFile(e.target.files[0])} />
+            <br /><br />
+            <label htmlFor="name" className="label">Document Name:</label>
+            <input type="text" id="name" placeholder="Document Name" className="input file-input-sm input-bordered w-full max-w-xs" value={fileName} onChange={(e) => setFileName(e.target.value)} />
+            <br /><br />
+            <button type="submit" className="btn btn-active btn-neutral btn-sm">Submit</button>
           </form>
         </div>
       </dialog>
-
       <aside className={`py-8 px-6 flex felx-col rounded-lg border-t-2 border-r-2 border-b-2 border-gray-200 fixed top-[68px] bottom-0 z-50 ${isSidebarOpen ? "w-52" : "w-24"}`}>
         <div className="flex flex-col justify-between">
           <div>
@@ -132,7 +146,7 @@ const Sidebar = () => {
                   <button
                     key={item.id}
                     className={`${buttonsClass} ${buttonSidebarClass}`}
-                    onClick={()=>{}}
+                    onClick={() => { }}
                   >
                     {React.cloneElement(item.icon, { disabled: item.disabled !== undefined ? item.disabled : false, color: item.disabled ? item.disabledColor : undefined })}
                     <span className={`${isSidebarOpen ? "" : "hidden"}`}>{item.name}</span>
@@ -146,10 +160,11 @@ const Sidebar = () => {
                   <button
                     key={item.id}
                     className={`${buttonsClass} ${buttonSidebarClass}`}
-                    onClick={() => { 
-                            if(item.id === 11){
-                              
-                              logout(); }}}
+                    onClick={() => {
+                      if (item.id === 11) {
+                        logout();
+                      }
+                    }}
                   >
                     {React.cloneElement(item.icon, { disabled: item.disabled !== undefined ? item.disabled : false, color: item.disabled ? item.disabledColor : undefined })}
                     <span className={`${isSidebarOpen ? "" : "hidden"}`}>{item.name}</span>
